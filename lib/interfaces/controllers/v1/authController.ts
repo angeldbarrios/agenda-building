@@ -6,14 +6,14 @@ import signupUseCase from '../../../application/use_cases/segurity/signupUseCase
 
 export default (appContext: AppContext) => {
   const router = express.Router();
-  
+
   router.post('/login', async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { username, password } = req.body;
       const { user, sessionData } = await loginUseCase(appContext, { username, password });
 
-      req.session.regenerate(function(err) {
-        if(err) {
+      req.session.regenerate(function (err) {
+        if (err) {
           next(err);
           return;
         }
@@ -21,13 +21,12 @@ export default (appContext: AppContext) => {
         req.session.data = sessionData;
         res.json({ error: false, data: user });
       });
-
     } catch (error) {
       next(error);
     }
   });
 
-  router.post('/signup', async(req: Request, res: Response, next: NextFunction) => {
+  router.post('/signup', async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userData = req.body;
       const user = await signupUseCase(appContext, userData);
@@ -38,4 +37,4 @@ export default (appContext: AppContext) => {
   });
 
   return router;
-}
+};

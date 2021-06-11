@@ -7,11 +7,15 @@ export default (appContext: AppContext) => {
   const patientUseCases = new PatientUseCases(appContext);
   const router = express.Router();
 
-  controllerCRUD({
-    create: true,
-    delete: true,
-    getById: true
-  }, router, patientUseCases);
+  controllerCRUD(
+    {
+      create: true,
+      delete: true,
+      getById: true,
+    },
+    router,
+    patientUseCases,
+  );
 
   return router;
-}
+};

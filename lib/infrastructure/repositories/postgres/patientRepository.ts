@@ -1,10 +1,8 @@
-import { Model, ModelCtor } from "sequelize/types";
-import PostgresBaseRepository from "./postgresBaseRepository";
+import { Model, ModelCtor } from 'sequelize/types';
+import PostgresBaseRepository from './postgresBaseRepository';
 
 export default class PatientRepository extends PostgresBaseRepository {
-  constructor(
-    private Patient: ModelCtor<Model<any, any>>
-  ) {
+  constructor(private Patient: ModelCtor<Model<any, any>>) {
     super(Patient, {});
   }
 
@@ -13,9 +11,9 @@ export default class PatientRepository extends PostgresBaseRepository {
     const patient = await this.Patient.findOne({
       where: {
         patient_id: patientId,
-        created_by: userId
+        created_by: userId,
       },
-      attributes: [ 'patient_id' ]
+      attributes: ['patient_id'],
     });
     return !!patient;
   }

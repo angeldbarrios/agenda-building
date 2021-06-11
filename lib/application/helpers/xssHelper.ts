@@ -1,9 +1,5 @@
-import { func } from "joi";
+import { func } from 'joi';
 
-export function escapeXSS() {
-  
-}
+export function escapeXSS() {}
 
-export function sanitizeXSS() {
-  
-}
+export function sanitizeXSS() {}

@@ -6,7 +6,7 @@ const TOKEN_DURATION = 1000 * 60 * 60 * 10;
 
 const schema = Joi.object({
   username: Joi.string().alphanum().max(50).required(),
-  password: Joi.string().required()
+  password: Joi.string().required(),
 });
 
 export default async (appContext: AppContext, inputData: any) => {
@@ -16,7 +16,7 @@ export default async (appContext: AppContext, inputData: any) => {
   // const { accessTokenManager } = appContext;
 
   const user = await authRepository.login(username, password);
-  
+
   const now = new Date();
   const sessionData = {
     userId: user.user_id,
@@ -25,7 +25,7 @@ export default async (appContext: AppContext, inputData: any) => {
     lastTimeAt: now,
     username: user.username,
     fullName: `${user.first_name} ${user.last_name}`,
-    email: user.email
+    email: user.email,
   };
 
   // user.accessToken = await accessTokenManager.generate({

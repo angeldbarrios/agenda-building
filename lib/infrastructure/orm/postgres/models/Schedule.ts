@@ -6,7 +6,7 @@ export default (sequelize: Sequelize) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true
+      autoIncrement: true,
     },
 
     patient_id: {
@@ -14,8 +14,8 @@ export default (sequelize: Sequelize) => {
       allowNull: false,
       references: {
         model: sequelize.models.Patient,
-        key: 'patient_id'
-      }
+        key: 'patient_id',
+      },
     },
 
     attented_by: {
@@ -23,8 +23,8 @@ export default (sequelize: Sequelize) => {
       allowNull: false,
       references: {
         model: sequelize.models.User,
-        key: 'user_id'
-      }
+        key: 'user_id',
+      },
     },
 
     created_by: {
@@ -32,8 +32,8 @@ export default (sequelize: Sequelize) => {
       allowNull: false,
       references: {
         model: sequelize.models.User,
-        key: 'user_id'
-      }
+        key: 'user_id',
+      },
     },
 
     status: {
@@ -41,8 +41,8 @@ export default (sequelize: Sequelize) => {
       allowNull: false,
       references: {
         model: sequelize.models.Status,
-        key: 'status_id'
-      }
+        key: 'status_id',
+      },
     },
 
     appointment_date: {
@@ -50,7 +50,7 @@ export default (sequelize: Sequelize) => {
     },
 
     observations: {
-      type: DataTypes.STRING(1024)
+      type: DataTypes.STRING(1024),
     },
 
     cancelled_by: {
@@ -58,12 +58,12 @@ export default (sequelize: Sequelize) => {
       allowNull: false,
       references: {
         model: sequelize.models.User,
-        key: 'user_id'
-      }
+        key: 'user_id',
+      },
     },
 
     cancelled_at: {
       type: DataTypes.DATE,
-    }
+    },
   });
 };

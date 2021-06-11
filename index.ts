@@ -1,5 +1,5 @@
 import bootstrap from './lib/infrastructure/config/bootstrap';
-import initServer from './lib/infrastructure/webserver/server-express';
+import initServer from './lib/infrastructure/webserver/server';
 import chalk from 'chalk';
 
 // Errores no capturados de la aplicación

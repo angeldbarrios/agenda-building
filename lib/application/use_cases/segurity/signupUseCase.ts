@@ -4,10 +4,16 @@ import validateSchemaOrFail from '../../helpers/schemaValidator';
 
 const schema = Joi.object({
   username: Joi.string().alphanum().max(50).required(),
-  first_name: Joi.string().regex(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]+$/).max(50).required(),
-  last_name: Joi.string().regex(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]+$/).max(50).required(),
+  first_name: Joi.string()
+    .regex(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]+$/)
+    .max(50)
+    .required(),
+  last_name: Joi.string()
+    .regex(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]+$/)
+    .max(50)
+    .required(),
   email: Joi.string().max(100).email().required(),
-  password: Joi.string().max(60).required()
+  password: Joi.string().max(60).required(),
 });
 
 export default async (appContext: AppContext, inputUserData: any) => {

@@ -6,13 +6,13 @@ export default (sequelize: Sequelize) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
+      allowNull: false,
     },
 
     status_name: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      unique: true
-    }
+      unique: true,
+    },
   });
 };

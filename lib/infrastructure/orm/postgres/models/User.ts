@@ -6,13 +6,13 @@ export default (sequelize: Sequelize) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
+      allowNull: false,
     },
 
     username: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      unique: true
+      unique: true,
     },
 
     first_name: {
@@ -30,8 +30,8 @@ export default (sequelize: Sequelize) => {
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: true
-      }
+        isEmail: true,
+      },
     },
 
     password: {
@@ -44,7 +44,7 @@ export default (sequelize: Sequelize) => {
     },
 
     role: {
-      type: DataTypes.INTEGER
-    }
+      type: DataTypes.INTEGER,
+    },
   });
 };

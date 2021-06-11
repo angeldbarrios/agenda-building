@@ -6,20 +6,18 @@ export default (sequelize: Sequelize) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
+      allowNull: false,
     },
 
     enterprise_name: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      unique: true
+      unique: true,
     },
 
     enterprise_address: {
       type: DataTypes.STRING(1024),
       allowNull: false,
     },
-    
-
   });
 };

@@ -7,7 +7,10 @@
     "build": "tsc --build",
     "dev": "nodemon",
     "start": "nodemon",
-    "test": "NODE_ENV=test mocha -r ts-node/register lib/**/*.spec.ts"
+    "test": "NODE_ENV=test mocha -r ts-node/register lib/**/*.spec.ts",
+    "lint": "eslint . --ext .ts || true",
+    "lint:fix": "eslint . --ext .ts --fix || true",
+    "prettier": "prettier --config .prettierrc.js lib/**/*.ts --write"
   },
   "dependencies": {
     "aws-sdk": "^2.925.0",

@@ -5,7 +5,7 @@ import PatientModel from './Patient';
 export default async (sequelize: Sequelize) => {
   const models = {
     User: UserModel(sequelize),
-    Patient: PatientModel(sequelize)
+    Patient: PatientModel(sequelize),
   };
   return models;
-}
+};

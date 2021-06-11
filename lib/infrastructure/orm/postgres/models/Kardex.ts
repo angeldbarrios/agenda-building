@@ -6,7 +6,7 @@ export default (sequelize: Sequelize) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
+      allowNull: false,
     },
 
     product_id: {
@@ -14,18 +14,18 @@ export default (sequelize: Sequelize) => {
       allowNull: false,
       references: {
         model: sequelize.models.Product,
-        key: 'product_id'
-      }
+        key: 'product_id',
+      },
     },
 
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
 
     observations: {
       type: DataTypes.STRING(1024),
-      allowNull: true
+      allowNull: true,
     },
 
     registered_by: {
@@ -33,8 +33,8 @@ export default (sequelize: Sequelize) => {
       allowNull: false,
       references: {
         model: sequelize.models.User,
-        key: 'user_id'
-      }
-    }
+        key: 'user_id',
+      },
+    },
   });
 };

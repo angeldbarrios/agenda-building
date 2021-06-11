@@ -18,6 +18,6 @@ export default class implements IAccessTokenManager {
         if (err) return reject(err);
         resolve(decoded);
       });
-    })
+    });
   }
-};
+}

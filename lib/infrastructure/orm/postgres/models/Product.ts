@@ -6,12 +6,12 @@ export default (sequelize: Sequelize) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true
+      autoIncrement: true,
     },
     product_name: {
       type: DataTypes.STRING,
       unique: true,
-      allowNull: false
+      allowNull: false,
     },
 
     // product_metric: {
@@ -25,12 +25,12 @@ export default (sequelize: Sequelize) => {
 
     product_price: {
       type: DataTypes.DOUBLE,
-      allowNull: true
+      allowNull: true,
     },
 
     product_description: {
       type: DataTypes.STRING(1024),
-      allowNull: true
+      allowNull: true,
     },
 
     created_by: {
@@ -38,8 +38,8 @@ export default (sequelize: Sequelize) => {
       allowNull: false,
       references: {
         model: sequelize.models.User,
-        key: 'user_id'
-      }
-    }
+        key: 'user_id',
+      },
+    },
   });
 };

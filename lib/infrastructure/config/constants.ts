@@ -4,5 +4,5 @@ export default {
     MONGO: 'mongo',
     POSTGRES: 'postgres',
     SQLITE: 'sqlite',
-  }
+  },
 };

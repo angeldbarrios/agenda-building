@@ -12,30 +12,30 @@ const config = {
   // individual password, so larger is better. however, larger also means longer
   // to hash the password. tune so that hashing the password takes about a
   // second
-  iterations: 872791
+  iterations: 872791,
 };
 
 export default class AuthRepository implements IAuthRepository {
-  constructor(private User: ModelCtor<Model<any, any>>) {
-  }
+  constructor(private User: ModelCtor<Model<any, any>>) {}
 
   private verifyPassword(storedHash: string, inputPassword: string): Promise<boolean> {
     return new Promise(function (resolve, reject) {
       try {
         const [salt, originalHash] = storedHash.split('$');
         crypto.pbkdf2(
-          inputPassword, 
-          salt, 
-          config.iterations, 
-          config.hashBytes, 
-          'sha512', 
+          inputPassword,
+          salt,
+          config.iterations,
+          config.hashBytes,
+          'sha512',
           (err: Error, hash: Buffer) => {
-            if(err) {
+            if (err) {
               reject(err);
             }
 
             resolve(hash.toString('hex') === originalHash);
-        });
+          },
+        );
       } catch (error) {
         reject(error);
       }
@@ -46,10 +46,17 @@ export default class AuthRepository implements IAuthRepository {
     return new Promise(function (resolve, reject) {
       try {
         const salt = crypto.randomBytes(config.saltBytes).toString('hex');
-        crypto.pbkdf2(password, salt, config.iterations, config.hashBytes, 'sha512', (err: Error, derivedKey: Buffer) => {
-          if(err) reject(err);
-          resolve([salt, derivedKey.toString('hex')].join('$'));
-        });
+        crypto.pbkdf2(
+          password,
+          salt,
+          config.iterations,
+          config.hashBytes,
+          'sha512',
+          (err: Error, derivedKey: Buffer) => {
+            if (err) reject(err);
+            resolve([salt, derivedKey.toString('hex')].join('$'));
+          },
+        );
       } catch (error) {
         reject(error);
       }
@@ -58,18 +65,18 @@ export default class AuthRepository implements IAuthRepository {
 
   async login(username: string, password: string) {
     try {
-      const user = await this.User.findOne({ 
-        where: { username: username},
-        attributes: [ 'user_id', 'username', 'first_name', 'last_name', 'email', 'password' ],
-        raw: true
+      const user = await this.User.findOne({
+        where: { username: username },
+        attributes: ['user_id', 'username', 'first_name', 'last_name', 'email', 'password'],
+        raw: true,
       });
-      if(!user) {
+      if (!user) {
         throw new Error('Invalid credentials');
       }
 
       const isVerified = await this.verifyPassword(user['password'], password);
-      if(!isVerified) {
-        throw new Error('Invalid credentials')
+      if (!isVerified) {
+        throw new Error('Invalid credentials');
       }
 
       delete user['password'];

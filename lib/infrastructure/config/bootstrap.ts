@@ -15,19 +15,17 @@ export default {
     const appContext: AppContext = {
       accessTokenManager: new JwtAccessTokenManager(),
       repositories: undefined,
-      errors
+      errors,
     };
 
     if (environment.database.dialect === constants.SUPPORTED_DATABASE.POSTGRES) {
       const sequealizeInstace = await sequealize();
       appContext.repositories = await repositories.postgres(sequealizeInstace);
       await sequealizeInstace.sync();
-    }
-
-    else {
+    } else {
       throw new Error('No valid database dialect');
     }
 
     return appContext;
-  }
+  },
 };

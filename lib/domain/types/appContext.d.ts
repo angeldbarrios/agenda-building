@@ -1,6 +1,5 @@
-import IAuthRepository from "../repositories/IAuthRepository";
-import IAccessTokenManager from "../security/IAccessTokenManager";
-
+import IAuthRepository from '../repositories/IAuthRepository';
+import IAccessTokenManager from '../security/IAccessTokenManager';
 
 export type Repositories = {
   authRepository?: IAuthRepository;
@@ -13,4 +12,4 @@ export type AppContext = {
   repositories: Repositories;
   errors: any;
   databaseInstance?: any;
-}
+};

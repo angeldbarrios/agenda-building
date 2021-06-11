@@ -2,7 +2,7 @@ import verifyAcessToken from '../../application/use_cases/segurity/VerifyAccessT
 import { AppContext } from '../../domain/types/appContext';
 
 export default (appContext: AppContext) => {
-  return async function(req, _res, next) {
+  return async function (req, _res, next) {
     try {
       const accessToken = req.headers['authorization'];
       const decoded = await verifyAcessToken(appContext, accessToken);
@@ -11,5 +11,5 @@ export default (appContext: AppContext) => {
     } catch (error) {
       next(error);
     }
-  }
-}
+  };
+};

@@ -1,5 +1,5 @@
 class PublicError extends Error {
-	public status: string | number;
+  public status: string | number;
 
   constructor(message: string, status: string | number) {
     super(message);
@@ -7,6 +7,4 @@ class PublicError extends Error {
   }
 }
 
-export {
-  PublicError
-}
+export { PublicError };

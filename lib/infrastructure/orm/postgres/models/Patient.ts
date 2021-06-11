@@ -6,27 +6,27 @@ export default (sequelize: Sequelize) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
+      allowNull: false,
     },
     patient_first_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     patient_last_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     phone_number: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     email: {
       type: DataTypes.STRING,
-      unique: true
+      unique: true,
     },
     address: {
-      type: DataTypes.STRING(1024)
+      type: DataTypes.STRING(1024),
     },
     created_by: {
       type: DataTypes.INTEGER,
@@ -34,7 +34,7 @@ export default (sequelize: Sequelize) => {
       references: {
         model: sequelize.models.User,
         key: 'user_id',
-      }
-    }
+      },
+    },
   });
 };

@@ -9,9 +9,9 @@ export default {
     const { User } = exportModels(sequalize);
 
     const repositories: Repositories = {
-      authRepository: new AuthRepository(User)
+      authRepository: new AuthRepository(User),
     };
 
     return repositories;
-  }
-}
+  },
+};

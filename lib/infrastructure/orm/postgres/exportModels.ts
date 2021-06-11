@@ -1,4 +1,4 @@
-import { Sequelize } from "sequelize/types";
+import { Sequelize } from 'sequelize/types';
 
 import getEnterpriseModel from './models/Enterprise';
 import getSubsidiary from './models/Subsidiary';
@@ -23,5 +23,5 @@ export default (sequealize: Sequelize) => {
     Stock: getStockModel(sequealize),
     Kardex: getKardexModel(sequealize),
     Role: getRoleModel(sequealize),
-  }
+  };
 };
