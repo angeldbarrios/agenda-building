@@ -1,14 +1,16 @@
 import Joi from 'joi';
 import IBaseRepository from '../../domain/repositories/IBaseRepository';
+import { SchemaName } from '../../domain/types/config';
+import validator from '../../domain/validators/validator';
 import validateSchemaOrFail from '../helpers/schemaValidator';
 
 type UseCaseConfig = {
+  tenureId: string;
   filterProperties: string[];
   selectableFields: string[];
   editableFields: string[];
   insertableFields: string[];
   sortableFields: string[];
-  tenureId: string;
 };
 
 type SortInfo = {
@@ -26,9 +28,10 @@ type PaginationParams = {
 export default abstract class BaseUseCase {
   constructor(
     protected baseRepository: IBaseRepository,
-    protected schema: Joi.SchemaMap<any>,
+    protected schemaName: SchemaName,
     protected config?: UseCaseConfig,
   ) {}
+  
 
   abstract checkPermissionsOnAction(action: string, userData: any): Promise<any>;
   abstract checkPermissionOnRecord(record: any, userData: any): Promise<any>;
@@ -83,7 +86,7 @@ export default abstract class BaseUseCase {
 
   async create(session: any, input: any) {
     await this.checkPermissionsOnAction('create', session);
-    validateSchemaOrFail(Joi.object(this.schema), input);
+    validator(this.schemaName, input);
 
     const result = await this.baseRepository.create(
       {

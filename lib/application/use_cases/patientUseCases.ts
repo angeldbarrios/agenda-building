@@ -1,29 +1,21 @@
 import { AppContext } from '../../domain/types/appContext';
 import BaseUseCase from './baseUseCase';
-import Joi from 'joi';
+import IPatientRepository from '../../domain/repositories/IPatientRepository';
 
-const schemaProps = {
-  firstName: Joi.string()
-    .regex(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]+$/)
-    .max(50)
-    .required(),
-  lastName: Joi.string()
-    .regex(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]+$/)
-    .max(50)
-    .required(),
-  phoneNumber: Joi.string().max(50).required(),
-  email: Joi.string().max(100).email().required(),
-  address: Joi.string().max(255).required(),
-};
-
-// const schema = Joi.object(schemaProps);
-
-const selectableFields = ['firstName', 'lastName', 'phoneNumber', 'email', 'address'];
-const editableFields = ['phoneNumber'];
-
-export default class PatientUseCases extends BaseUseCase {
+export default class PatientUseCases extends BaseUseCase implements IPatientRepository {
   constructor(private appContext: AppContext) {
-    super(appContext.repositories.patientRepository, schemaProps);
+    super(
+      appContext.repositories.patientRepository,
+      'patient',
+      {
+        tenureId: 'patientId',
+        filterProperties: [],
+        selectableFields: ['firstName', 'lastName', 'phoneNumber', 'email', 'address'],
+        editableFields: ['phoneNumber'],
+        insertableFields: [],
+        sortableFields: []
+      }
+    );
   }
 
   checkPermissionsOnAction(action: string, userData: any): Promise<void> {

@@ -1,9 +1,11 @@
 import IAuthRepository from '../repositories/IAuthRepository';
+import IBaseRepository from '../repositories/IBaseRepository';
+import IPatientRepository from '../repositories/IPatientRepository';
 import IAccessTokenManager from '../security/IAccessTokenManager';
 
 export type Repositories = {
   authRepository?: IAuthRepository;
-  patientRepository?: any;
+  patientRepository?: IPatientRepository & IBaseRepository;
   scheduleRepository?: any;
 };
 

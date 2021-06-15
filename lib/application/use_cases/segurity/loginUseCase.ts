@@ -1,19 +1,10 @@
-import Joi from 'joi';
 import { AppContext } from '../../../domain/types/appContext';
-import validateSchemaOrFail from '../../helpers/schemaValidator';
-
-const TOKEN_DURATION = 1000 * 60 * 60 * 10;
-
-const schema = Joi.object({
-  username: Joi.string().alphanum().max(50).required(),
-  password: Joi.string().required(),
-});
+import validator from '../../../domain/validators/validator';
 
 export default async (appContext: AppContext, inputData: any) => {
-  const { username, password } = validateSchemaOrFail(schema, inputData);
+  const { username, password } = validator('user', inputData, { properties: ['username', 'password'] });
 
   const { authRepository } = appContext.repositories;
-  // const { accessTokenManager } = appContext;
 
   const user = await authRepository.login(username, password);
 
@@ -27,13 +18,6 @@ export default async (appContext: AppContext, inputData: any) => {
     fullName: `${user.first_name} ${user.last_name}`,
     email: user.email,
   };
-
-  // user.accessToken = await accessTokenManager.generate({
-  //   sessionId: uuidv4(),
-  //   username: user.username,
-  //   userId: user._id,
-  //   exp: Date.now() + TOKEN_DURATION
-  // });
 
   return { user, sessionData };
 };
